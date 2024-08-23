@@ -35,10 +35,10 @@ jobs:
         cache: maven
     - name: Build App
       run: ls -R
-    - name: Upload JAR
-      uses: action/upload-artifact@v4
-      with:
-        name: artifact
-        path: ./target/bcobta-0.0.1-SNAPSHOT.jar
+    #- name: Upload JAR
+    #  uses: action/upload-artifact@v4
+    #  with:
+    #    name: artifact
+    #    path: ./target/bcobta-0.0.1-SNAPSHOT.jar
 
     
