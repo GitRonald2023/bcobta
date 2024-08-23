@@ -58,4 +58,10 @@ jobs:
         file: /home/runner/work/bcobta/bcobta/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}
+    - name: Actualizar version
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
+        replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}"
+        include: "k8s/deployment.yml"
         
