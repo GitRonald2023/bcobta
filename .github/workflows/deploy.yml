@@ -60,6 +60,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}
     - name: Copiar k8s archivos
       run: |
+        ls -R
         mkdir /tmp/k8s
         cp k8s/* /tmp/k8s
     - name: Alcanzar k8s repo
@@ -70,6 +71,7 @@ jobs:
         token: ${{secrets.my_pat}}
     - name: Copiar contenido 
       run: |
+        ls -R
         mkdir -p bcobta
         cp /tmp/k8s/* bcobta
     - name: Actualizar manifiestos yml
@@ -77,7 +79,7 @@ jobs:
       with:
         find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:.*"
         replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
-        include: "bcobta/deployment.yml"
+        include: ".k8s/deployment.yml"
     - name: Actualizar yml en el repo
       run: |
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
