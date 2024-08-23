@@ -65,4 +65,4 @@ jobs:
       with:
         find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
         replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}"
-        include: "k8s/**"
+        include: "/home/runner/work/bcobta/bcobta/k8s/*"
