@@ -59,10 +59,12 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}
     
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Find and Replace
       uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
         replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}"
         include: "/home/runner/work/bcobta/bcobta/k8s/*"
+    - name: Cambios en el repo
+      uses: stefanzweifel/git-auto-commit-action@v4
