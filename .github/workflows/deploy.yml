@@ -51,11 +51,11 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    #- name: Push image
-    #  uses: docker/build-push-action@v4
-    #  with:
-    #    context: .
-    #    file: /home/runner/work/bcobta/bcobta/Dockerfile
-    #    push: true
-    #    tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:latest
+    - name: Push image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: .Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:latest
         
