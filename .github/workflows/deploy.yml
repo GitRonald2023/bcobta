@@ -1,5 +1,5 @@
 name: Spring Boot APP CI CD to Kubernetes
-
+run-name: 'Build bcobta (build version: ${{github.run_number}})'
 on:
   push:
     branches: [ "master" ]
