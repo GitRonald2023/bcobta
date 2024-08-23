@@ -34,8 +34,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build App
-      run: pwd 
-      run: ./mvn -B package -Dskiptests --file ./pom.xml
+      run: ls -R
     - name: Upload JAR
       uses: action/upload-artifact@v4
       with:
