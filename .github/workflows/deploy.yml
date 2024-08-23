@@ -77,7 +77,7 @@ jobs:
     - name: Actualizar manifiestos yml
       uses: jacobtomlinson/gha-find-replace@v3
       with:
-        find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:.*"
+        find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
         replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
         include: ".k8s/deployment.yml"
     - name: Actualizar yml en el repo
