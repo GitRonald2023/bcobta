@@ -57,5 +57,5 @@ jobs:
         context: .
         file: /home/runner/work/bcobta/bcobta/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}
         
