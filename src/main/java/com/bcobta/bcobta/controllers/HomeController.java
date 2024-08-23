@@ -14,7 +14,7 @@ import com.arakelian.faker.service.RandomPerson;
 public class HomeController {
     @GetMapping
     public String healthCheck() {
-        return "OK";
+        return "Hola Mundo";
     }
 
     @GetMapping("/people")
