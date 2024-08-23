@@ -58,13 +58,31 @@ jobs:
         file: /home/runner/work/bcobta/bcobta/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}
-    
-    - uses: actions/checkout@v4
-    - name: Find and Replace
+    - name: Copiar k8s archivos
+      run: |
+        mkdir /tmp/k8s
+        cp k8s/* /tmp/k8s
+    - name: Alcanzar k8s repo
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ vars.USERNAME_GITHUB }}/bcobta
+        ref: main
+        token: ${{secrets.my_pat}}
+    - name: Copiar contenido 
+      run: |
+        mkdir -p bcobta
+        cp /tmp/k8s/* bcobta
+    - name: Actualizar manifiestos yml
       uses: jacobtomlinson/gha-find-replace@v3
       with:
-        find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
-        replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}"
-        include: "/home/runner/work/bcobta/bcobta/k8s/*"
-    - name: Cambios en el repo
-      uses: stefanzweifel/git-auto-commit-action@v4
+        find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:.*"
+        replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
+        include: "bcobta/deployment.yml"
+    - name: Actualizar yml en el repo
+      run: |
+        git config --global user.name ${{ vars.USERNAME_GITHUB }}
+        git config --global user.email ${{ vars.EMAIL }}
+        git remote set-url origin https://x-access-token:${{ secrets.my_pat }}@github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
+        git add .
+        git commit -am "Build ${{github.run_number}}"
+        git push
