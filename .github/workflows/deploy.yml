@@ -40,10 +40,10 @@ jobs:
       with:
         name: app-artifact
         path: /home/runner/work/bcobta/bcobta/target/bcobta-0.0.1-SNAPSHOT.jar
-    - name: Download JAR
-      uses: actions/download-artifact@v4
-      with:
-        name: app-artifact
+    #- name: Download JAR
+    #  uses: actions/download-artifact@v4
+    #  with:
+    #    name: app-artifact
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Login to DockerHub
@@ -68,7 +68,7 @@ jobs:
       with:
         repository: ${{ vars.USERNAME_GITHUB }}/bcobta
         ref: master
-        token: ${{secrets.my_pat}}
+        token: ${{ secrets.my_pat }}
     - name: Copiar contenido 
       run: |
         ls -R
@@ -79,9 +79,10 @@ jobs:
       with:
         find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
         replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
-        include: ".k8s/deployment.yml"
+        include: "bcobta/deployment.yml"
     - name: Actualizar yml en el repo
       run: |
+        cat bcobta/deployment.yml
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
         git config --global user.email ${{ vars.EMAIL }}
         git remote set-url origin https://x-access-token:${{ secrets.my_pat }}@github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
