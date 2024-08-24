@@ -1,21 +1,21 @@
-name: Spring Boot APP CI CD to Kubernetes
-run-name: 'Build bcobta (build version: ${{github.run_number}})'
+name: Spring Boot APP CI/CD to Kubernetes
+run-name: 'Build bcobta (build version: ${{ github.run_number }})'
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
-  
+
   deploy:
-    - name: Deploy
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Permisos k8s repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           repository: ${{ vars.USERNAME_GITHUB }}/bcobta
           ref: master
-          token: ${{ ArgoCDtokubernetes }}
+          token: ${{ secrets.ARGOCD_TOKEN }}
+
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
@@ -23,10 +23,13 @@ jobs:
           replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ github.run_number }}"
           include: "**deployment.yml"
           regex: true
-      - name: Validación cambio deployment.yml
+
+      - name: Validate deployment.yml changes
         run: |
           ls -R
           cat ./k8s/deployment.yml
-      - name: Push a repo con cambios
+
+      - name: Push changes to repository
         uses: stefanzweifel/git-auto-commit-action@v4
+
 
