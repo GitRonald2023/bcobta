@@ -76,7 +76,7 @@ jobs:
         with:
           find: "^image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:.*$"
           replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ github.run_number }}"
-          include: "**deployment.yml"
+          include: "./k8s/deployment.yml"
       - name: Validación cambio deployment.yml
         run: |
           cat ./k8s/deployment.yml
