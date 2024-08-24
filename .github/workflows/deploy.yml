@@ -71,6 +71,7 @@ jobs:
           regex: true
       - name: Validación cambio deployment.yml
         run: |
+          ls -R
           cat ./k8s/deployment.yml
       - name: Push a repo con cambios
         uses: stefanzweifel/git-auto-commit-action@v4
