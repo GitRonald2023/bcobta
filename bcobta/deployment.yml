@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: bcobta
-        image: dockerronaldrodriguez/bcobta:203
+        image: dockerronaldrodriguez/bcobta:204
         ports:
         - containerPort: 5000
