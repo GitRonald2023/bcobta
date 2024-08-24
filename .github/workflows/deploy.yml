@@ -57,13 +57,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        repository: ${{ vars.USERNAME_GITHUB }}/bcobta
-        ref: master
-        token: ${{secrets.my_pat}}
-
+    #- name: Checkout repository
+    #  uses: actions/checkout@v4
+    #  with:
+    #    repository: ${{ vars.USERNAME_GITHUB }}/bcobta
+    #    ref: master
+    #    token: ${{secrets.my_pat}}
+    - uses: actions/checkout@v4
+    - run: |
+        date > generated.txt
+        git config --global user.name ${{ vars.USERNAME_GITHUB }}
+        git config --global user.email ${{ vars.EMAIL }}
+        git remote set-url origin https://x-access-token:${{ secrets.my_pat }}@github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
+        git add .
+        git commit -m "generated"
+        git push
       #- name: Find and Replace
       #  uses: jacobtomlinson/gha-find-replace@v3
       #  with:
