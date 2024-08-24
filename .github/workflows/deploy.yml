@@ -9,7 +9,6 @@ jobs:
   deploy:
     - name: Deploy
       runs-on: ubuntu-latest
-
     steps:
       - name: Permisos k8s repo
         uses: actions/checkout@v4
