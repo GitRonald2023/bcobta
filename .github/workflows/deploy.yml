@@ -31,7 +31,7 @@ jobs:
       with:
         repository: ${{ vars.USERNAME_GITHUB }}/bcobta
         ref: master
-        token: ${{ secrets.my_pat }}
+        token: ${{secrets.my_pat}}
 
       #- name: Find and Replace
       #  uses: jacobtomlinson/gha-find-replace@v3
