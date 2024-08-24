@@ -66,6 +66,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: rutas
+        run: ls -R
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
