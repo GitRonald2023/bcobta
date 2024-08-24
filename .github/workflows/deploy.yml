@@ -7,29 +7,30 @@ on:
 jobs:
 
   deploy:
-    runs-on: ubuntu-latest
+    - name: Deploy
+      runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ vars.USERNAME_GITHUB }}/bcobta
           ref: master
           token: ${{ secrets.my_pat }}
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:.*"
-          replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ github.run_number }}"
-          include: "**deployment.yml"
-          regex: true
+      #- name: Find and Replace
+      #  uses: jacobtomlinson/gha-find-replace@v3
+      #  with:
+      #    find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:.*"
+      #    replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ github.run_number }}"
+      #    include: "**deployment.yml"
+      #    regex: true
 
-      - name: Validate deployment.yml changes
-        run: |
-          ls -R
-          cat ./k8s/deployment.yml
+      #- name: Validate deployment.yml changes
+      #  run: |
+      #    ls -R
+      #    cat ./k8s/deployment.yml
 
-      - name: Push changes to repository
-        uses: stefanzweifel/git-auto-commit-action@v4
+      #- name: Push changes to repository
+      #  uses: stefanzweifel/git-auto-commit-action@v4
 
 
