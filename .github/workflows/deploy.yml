@@ -71,11 +71,13 @@ jobs:
           repository: ${{ vars.USERNAME_GITHUB }}/bcobta
           ref: master
           token: ${{ secrets.my_pat }}
+      - name: Configurar "run number" como variable de entorno
+        run: echo "RUN_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:"
-          replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}"
+          replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ env.RUN_NUMBER }}"
           include: "**deployment.yml"
       - name: Validación cambio deployment.yml
         run: |
