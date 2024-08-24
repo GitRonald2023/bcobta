@@ -73,19 +73,27 @@ jobs:
       with:
         find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
         replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
-        include: /home/runner/work/bcobta/bcobta/k8s/deployment.yml
+        files: /home/runner/work/bcobta/bcobta/k8s/deployment.yml
 
-    - name: Commit y push de deployment.yml
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: validar cambio
       run: |
         cat /home/runner/work/bcobta/bcobta/k8s/deployment.yml
-        git config --global user.name ${{ vars.USERNAME_GITHUB }}
-        git config --global user.email ${{ vars.EMAIL }}
-        git remote set-url origin https://github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
-        git branch -m master
-        git add .k8s/deployment.yml
-        git push origin master
+    
+    
+    
+    
+    
+    #- name: Commit y push de deployment.yml
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #  run: |
+    #    cat /home/runner/work/bcobta/bcobta/k8s/deployment.yml
+    #    git config --global user.name ${{ vars.USERNAME_GITHUB }}
+    #    git config --global user.email ${{ vars.EMAIL }}
+    #    git remote set-url origin https://github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
+    #    git branch -m master
+    #    git add .k8s/deployment.yml
+    #    git push origin master
     
       
       
