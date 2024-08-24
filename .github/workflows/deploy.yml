@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
-      name: Checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
       with:
         repository: ${{ vars.USERNAME_GITHUB }}/bcobta
         ref: master
