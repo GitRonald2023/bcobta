@@ -69,9 +69,9 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "image: dockerronaldrodriguez/bcobta:*"
-          replace: "image: dockerronaldrodriguez/bcobta/bcobta:50"
-          include: "/home/runner/work/bcobta/bcobta/k8s/*"
+          find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
+          replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:50"
+          include: "/home/runner/work/bcobta/bcobta/k8s/deployment.yml"
       - name: Validación cambio deployment.yml
         run: |
           cat /home/runner/work/bcobta/bcobta/k8s/deployment.yml
