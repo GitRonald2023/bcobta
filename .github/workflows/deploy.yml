@@ -73,7 +73,7 @@ jobs:
       with:
         find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
         replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
-        include: .k8s/deployment.yml
+        include: /home/runner/work/bcobta/bcobta/k8s/deployment.yml
 
     - name: Commit y push de deployment.yml
       env:
@@ -85,7 +85,7 @@ jobs:
         git branch -m master
         git add .k8s/deployment.yml
         git push origin master
-        cat .k8s/deployment.yml
+    
       
       
 
