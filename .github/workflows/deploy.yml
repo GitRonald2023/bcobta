@@ -65,6 +65,7 @@ jobs:
     #    token: ${{secrets.my_pat}}
     - uses: actions/checkout@v4
     - run: |
+        ls -R
         date > generated.txt
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
         git config --global user.email ${{ vars.EMAIL }}
