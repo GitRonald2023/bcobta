@@ -65,19 +65,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonando repo
-      uses: actions/checkout@v4
-    
-    - name: Modificando el deployment.yml
-      uses: jacobtomlinson/gha-find-replace@v3
-      with:
-        find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
-        replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
-        files: /home/runner/work/bcobta/bcobta/k8s/deployment.yml
-
-    - name: validar cambio
-      run: |
-        cat /home/runner/work/bcobta/bcobta/k8s/deployment.yml
+      - uses: actions/checkout@v2
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:*"
+          replace: "image: ${{ vars.USERNAME_GITHUB }}/bcobta:${{github.run_number}}"
+          include: "/home/runner/work/bcobta/bcobta/k8s/**"
+          regex: true
     
     
     
