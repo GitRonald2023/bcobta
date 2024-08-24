@@ -74,7 +74,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "^image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:.*$"
+          find: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:*"
           replace: "image: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{ github.run_number }}"
           include: "**deployment.yml"
           regex: true
