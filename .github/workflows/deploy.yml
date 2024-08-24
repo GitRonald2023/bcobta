@@ -20,22 +20,18 @@ jobs:
         cache: maven
     - name: Run Test
       run: mvn -B test
-
-
-
-
-
-  #deploy:
-  #  name: Deploy
-  #  runs-on: ubuntu-latest
+  
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
     
-  #  steps:
-  #    - name: Checkout repository
-  #      uses: actions/checkout@v4
-  #      with:
-  #        repository: ${{ vars.USERNAME_GITHUB }}/bcobta
-  #        ref: master
-  #        token: ${{ secrets.my_pat }}
+    steps:
+    - uses: actions/checkout@v4
+      name: Checkout repository
+      with:
+        repository: ${{ vars.USERNAME_GITHUB }}/bcobta
+        ref: master
+        token: ${{ secrets.my_pat }}
 
       #- name: Find and Replace
       #  uses: jacobtomlinson/gha-find-replace@v3
