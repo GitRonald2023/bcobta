@@ -52,6 +52,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}  
   
   deploy:
+    needs: build
     name: Deploy
     runs-on: ubuntu-latest
     
