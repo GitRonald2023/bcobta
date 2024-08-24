@@ -6,17 +6,36 @@ on:
 
 jobs:
 
-  deploy:
-    name: Deploy
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ vars.USERNAME_GITHUB }}/bcobta
-          ref: master
-          token: ${{ secrets.my_pat }}
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Test
+      run: mvn -B test
+
+
+
+
+
+  #deploy:
+  #  name: Deploy
+  #  runs-on: ubuntu-latest
+    
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v4
+  #      with:
+  #        repository: ${{ vars.USERNAME_GITHUB }}/bcobta
+  #        ref: master
+  #        token: ${{ secrets.my_pat }}
 
       #- name: Find and Replace
       #  uses: jacobtomlinson/gha-find-replace@v3
