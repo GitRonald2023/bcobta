@@ -82,7 +82,8 @@ jobs:
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
         git config --global user.email ${{ vars.EMAIL }}
         git remote set-url origin https://github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
-        git add deployment.yml
+        git branch -m master
+        git add .k8s/deployment.yml
         git push origin master
         cat .k8s/deployment.yml
       
