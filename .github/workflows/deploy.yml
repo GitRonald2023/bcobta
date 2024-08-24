@@ -79,6 +79,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        cat /home/runner/work/bcobta/bcobta/k8s/deployment.yml
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
         git config --global user.email ${{ vars.EMAIL }}
         git remote set-url origin https://github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
