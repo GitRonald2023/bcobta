@@ -29,7 +29,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        repository: ${{vars.USERNAME_GITHUB}}/bcobta
+        repository: GitRonald2023/bcobta
         ref: master
         token: ${{secrets.my_pat}}
 
