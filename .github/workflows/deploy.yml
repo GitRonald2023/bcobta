@@ -66,6 +66,7 @@ jobs:
     - uses: actions/checkout@v4
       name: Checkout con permisos
     - run: |
+        date > fecha.txt
         git config --global user.name ${{ vars.USERNAME_GITHUB }}
         git config --global user.email ${{ vars.EMAIL }}
         git remote set-url origin https://x-access-token:${{ secrets.my_pat }}@github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
