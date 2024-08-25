@@ -62,7 +62,7 @@ jobs:
       with:
         repository: ${{ vars.USERNAME_GITHUB }}/bcobta
         ref: master
-        token: ${{secrets.my_pat}}
+        token: ${{ secrets.my_pat }}
     #- uses: actions/checkout@v4
     #- run: |
     #    date > generated.txt
