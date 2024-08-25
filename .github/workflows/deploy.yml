@@ -61,7 +61,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: ${{ vars.USERNAME_GITHUB }}/bcobta
-        ref: master
+        path: master
         token: ${{ secrets.my_pat }}
     #- uses: actions/checkout@v4
     #  name: Checkout con permisos
