@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validacion autor
-        run : echo "${{ github.event.head_commit.author.email }}"
-        if: ${{ github.event.head_commit.author.email }} != '41898282+github-actions[bot]@users.noreply.github.com'
-        #run : echo "Coincidencia de e-mail de de ciclo infinito automatico"
+        #run : echo "${{ github.event.head_commit.author.email }}"
+        if: ${{ github.event.head_commit.author.email }} != 'GitRonald2023@users.noreply.github.com'
+        run: |
+          echo "Coincidencia de e-mail de de ciclo infinito automatico, saliendo....." 
+          exit 1
 #  tests:
 #    needs: no-automatico
 #    if: ${{ success() }}
