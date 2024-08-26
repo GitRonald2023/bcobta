@@ -12,8 +12,9 @@ jobs:
         #run : echo "${{ github.event.head_commit.author.email }}"
         if: ${{ github.event.head_commit.author.email }} != 'GitRonald2023@users.noreply.github.com'
         run: |
+          echo "${{ github.event.head_commit.author.email }}"
           echo "Coincidencia de e-mail de de ciclo infinito automatico, saliendo....." 
-          exit 1
+          exit 0
 #  tests:
 #    needs: no-automatico
 #    if: ${{ success() }}
@@ -62,7 +63,7 @@ jobs:
   #      tags: ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/bcobta:${{github.run_number}}  
   
   deploy:
-  #  needs: build
+    needs: no-automatico
     name: Deploy
     runs-on: ubuntu-latest
     
