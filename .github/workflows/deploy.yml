@@ -83,12 +83,25 @@ jobs:
     - name: Validate deployment.yml changes
       run: |
         cat ./k8s/deployment.yml
-    - name: Commit changes
-      if: "!contains(github.event.head_commit.message, 'Apply automatic changes')"
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "Apply automatic changes"
-        author_name: 'GitRonald2023 <GitRonald2023@users.noreply.github.com>'
-        author_email: '41898282+github-actions[bot]@users.noreply.github.com'
+    - name: Push de los cambios
+      run: |
+        git config --global user.name ${{ vars.USERNAME_GITHUB }}
+        git config --global user.email ${{ vars.EMAIL }}
+        git remote set-url origin https://x-access-token:${{ secrets.my_pat }}@github.com/${{ vars.USERNAME_GITHUB }}/bcobta.git
+        git add .
+        git commit -m "Cambios en deployment.yml"
+        git push
+
+
+
+
+
+    #- name: Commit changes
+    #  if: "!contains(github.event.head_commit.message, 'Apply automatic changes')"
+    #  uses: stefanzweifel/git-auto-commit-action@v4
+    #  with:
+    #    commit_message: "Apply automatic changes"
+    #    author_name: 'GitRonald2023 <GitRonald2023@users.noreply.github.com>'
+    #    author_email: '41898282+github-actions[bot]@users.noreply.github.com'
   
 
