@@ -6,7 +6,11 @@ on:
 
 jobs:
   no-automatico:
-    if: ${{ github.event.head_commit.author.name != 'GitRonald2023 <GitRonald2023@users.noreply.github.com>' && github.event.head_commit.author.email != '41898282+github-actions[bot]@users.noreply.github.com' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validacion autor
+        if: ${{ github.event.head_commit.author.name != 'GitRonald2023 <GitRonald2023@users.noreply.github.com>' && github.event.head_commit.author.email != '41898282+github-actions[bot]@users.noreply.github.com' }}
+        run : echo "Coincidencia de autor de ciclo infinito automatico"
   tests:
     needs: no-automatico
     name: Tests
