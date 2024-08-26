@@ -12,7 +12,7 @@ jobs:
         run: |
           if [ "${{ github.event.head_commit.author.email }}" == "${{ vars.USERNAME_GITHUB }}@users.noreply.github.com" ]; then
             echo "EL autor hace match con inicio automatico sin fin. Saliendo del workflow"
-            exit 0
+            exit 1
           fi
 
   tests:
