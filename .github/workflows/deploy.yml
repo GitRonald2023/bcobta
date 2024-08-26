@@ -82,9 +82,13 @@ jobs:
         regex: true
     - name: Validate deployment.yml changes
       run: |
-        ls -R
         cat ./k8s/deployment.yml
-    - name: Push changes to repository
+    - name: Commit changes
+      if: "!contains(github.event.head_commit.message, 'Apply automatic changes')"
       uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Apply automatic changes"
+        author_name: 'GitRonald2023 <GitRonald2023@users.noreply.github.com>'
+        author_email: '41898282+github-actions[bot]@users.noreply.github.com'
   
 
