@@ -16,7 +16,7 @@ public class HomeControllerTest {
 
     @Test
     public void homeController_healthCheck_returnsOk() {
-        assertEquals(homeController.healthCheck(), "Hola Mundo");
+        assertEquals(homeController.healthCheck(), "Hola Mundo BANCO DE BOGOTA");
     }
     
     @Test

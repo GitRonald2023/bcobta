@@ -18,6 +18,21 @@ Pruebas Unitarias: src/test/java/com/bcobta/bcobta/HomeControllersTest.java
 Imagen Docker: Dockerfile
 Declaraciones .yml para kubernetes: k8s/
 
+VARIABLES Y SECRETS
+github.run_number : numero que controla github para referirse al # ejecución
+github.event.head_commit.author.email : Variable de github que contiene el correo con 
+el que se está generando el commit
+USERNAME_GITHUB: variable de repositorio que almacena el usuario de github que tiene 
+al repositorio de desarrollo
+DOCKERHUB_USERNAME: secreto en el repositirio que almacena el usuario para logearse a 
+Docker Hub
+DOCKERHUB_TOKEN: secreto en el repositorio que almacena la clave para logearse a 
+Docker Hub
+MY_PAT : secreto en el repositorio que contiene el token del sistema para realizar commit 
+automaticamente dentro del workflow, el token debe tener permisos de read-write en el 
+ambiente, sus variables, secretos y demás elementos del repositorio de trabajo. 
+
+
 SISTEMAS PARA FUNCIONAMIENTO:
 On-premise
 Docker Desktop (latest)
