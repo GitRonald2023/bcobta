@@ -13,6 +13,7 @@ jobs:
         run : echo "Coincidencia de e-mail de de ciclo infinito automatico"
   tests:
     needs: no-automatico
+    if: ${{ success() }}
     name: Tests
     runs-on: ubuntu-latest
 
